@@ -104,15 +104,9 @@ public class WebAppConfig implements WebMvcConfigurer {
 
         // add dialect spring security
         templateEngine.addDialect(new SpringSecurityDialect());
+        // add dialect for Java 8 time
+        templateEngine.addDialect(new Java8TimeDialect());
         return templateEngine;
-    }
-
-    @Bean
-    public TemplateEngine templateEngine(ITemplateResolver templateResolver) {
-        SpringTemplateEngine engine = new SpringTemplateEngine();
-        engine.addDialect(new Java8TimeDialect());
-        engine.setTemplateResolver(templateResolver);
-        return engine;
     }
 
     @Bean
