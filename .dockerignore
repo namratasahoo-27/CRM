@@ -1,0 +1,53 @@
+# Build output
+target/
+build/
+*.class
+*.jar
+*.war
+
+# Maven wrapper (excluded - use system maven)
+mvnw
+mvnw.cmd
+.mvn/
+
+# Gradle wrapper (excluded - use system gradle)
+gradlew
+gradlew.bat
+gradle/wrapper/
+
+# IDE files
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+.project
+.classpath
+.settings/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# Documentation
+*.md
+README*
+LICENSE
+
+# Logs
+*.log
+logs/
+
+# Test coverage
+.coverage
+coverage/
+
+# Temporary files
+*.tmp
+*.swp
+*~

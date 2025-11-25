@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  crm-app:
+    image: crm:latest
+    container_name: crm-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - DB_HOST=${DB_HOST:-localhost}
+      - DB_PORT=${DB_PORT:-3306}
+      - DB_NAME=${DB_NAME:-crm}
+      - DB_USERNAME=${DB_USERNAME:-root}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - HIBERNATE_DDL_AUTO=${HIBERNATE_DDL_AUTO:-update}
+      - SQL_INIT_MODE=${SQL_INIT_MODE:-never}
+    networks:
+      - crm-network
+    restart: unless-stopped
+
+networks:
+  crm-network:
+    driver: bridge
