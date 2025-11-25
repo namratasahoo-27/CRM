@@ -4,6 +4,7 @@ import crm.entity.Category;
 import crm.entity.Customer;
 import crm.repository.CustomerRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Set;
 
@@ -28,7 +29,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer showCustomer(Long id) {
-        return customerRepository.findOne(id);
+        return customerRepository.findById(id).orElse(null);
     }
 
     @Override
@@ -72,17 +73,17 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Iterable<Customer> findByEnabledTrueAndPhone(int phone) {
+    public Iterable<Customer> findByEnabledTrueAndPhone(String phone) {
         return customerRepository.findByEnabledAndPhone(1, phone);
     }
 
     @Override
-    public Iterable<Customer> findByEnabledFalseAndPhone(int phone) {
+    public Iterable<Customer> findByEnabledFalseAndPhone(String phone) {
         return customerRepository.findByEnabledAndPhone(0, phone);
     }
 
     @Override
-    public Iterable<Customer> findByPhone(int phone) {
+    public Iterable<Customer> findByPhone(String phone) {
         return customerRepository.findByPhone(phone);
     }
 
@@ -177,6 +178,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
+    @Transactional
     public void saveCustomer(Customer customer) {
         customer.setEnabled(1);
         customerRepository.save(customer);
