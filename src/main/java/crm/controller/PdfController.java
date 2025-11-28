@@ -32,7 +32,9 @@ public class PdfController {
             fileName += ".pdf";
         }
         Document document = new Document();
-        PdfWriter.getInstance(document, new FileOutputStream(fileName));
+        String pdfDirectory = System.getenv().getOrDefault("PDF_STORAGE_PATH", System.getProperty("java.io.tmpdir"));
+        String fullPath = pdfDirectory + (pdfDirectory.endsWith("/") ? "" : "/") + fileName;
+        PdfWriter.getInstance(document, new FileOutputStream(fullPath));
         document.open();
         Paragraph paragraph = new Paragraph(text);
         document.add(paragraph);

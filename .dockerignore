@@ -1,0 +1,43 @@
+# Maven build files
+target/
+.m2/
+
+# Maven wrapper files (excluded for security)
+mvnw
+mvnw.cmd
+.mvn/
+
+# Git files
+.git/
+.gitignore
+
+# IDE files
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Documentation
+*.md
+README*
+
+# Logs
+logs/
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# Test files
+src/test/
+
+# Docker files
+Dockerfile*
+docker-compose*
+.dockerignore
