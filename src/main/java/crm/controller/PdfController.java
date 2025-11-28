@@ -7,6 +7,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 import crm.entity.Pdf;
 import crm.service.PdfService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,12 +17,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import javax.validation.Valid;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.File;
 
 @Controller
 @Slf4j
 public class PdfController {
 
     private PdfService pdfService;
+
+    @Value("${pdf.storage.path:/app/data/pdfs}")
+    private String pdfStoragePath;
 
     public PdfController(PdfService pdfService) {
         this.pdfService = pdfService;
@@ -31,8 +36,15 @@ public class PdfController {
         if (!fileName.endsWith(".pdf")) {
             fileName += ".pdf";
         }
+        // Ensure the storage directory exists
+        File storageDir = new File(pdfStoragePath);
+        if (!storageDir.exists()) {
+            storageDir.mkdirs();
+        }
+        // Generate full file path using configurable storage directory
+        String fullPath = new File(pdfStoragePath, fileName).getAbsolutePath();
         Document document = new Document();
-        PdfWriter.getInstance(document, new FileOutputStream(fileName));
+        PdfWriter.getInstance(document, new FileOutputStream(fullPath));
         document.open();
         Paragraph paragraph = new Paragraph(text);
         document.add(paragraph);

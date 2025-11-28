@@ -1,0 +1,48 @@
+# Maven build artifacts
+target/
+
+# Maven wrapper (not needed - using system maven)
+mvnw
+mvnw.cmd
+.mvn/
+
+# IDE files
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Version control
+.git/
+.gitignore
+
+# Documentation
+*.md
+README*
+
+# Logs
+logs/
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# Configuration (will be mounted)
+config/
+
+# Test files
+src/test/
+
+# Node modules (if any)
+node_modules/
+
+# Docker files
+Dockerfile*
+docker-compose*
+.dockerignore
